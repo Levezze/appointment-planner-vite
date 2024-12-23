@@ -6,19 +6,19 @@ export const ROUTES = {
   };
 
 function Root() {
-    return (
-        <>
-            <nav>
-                <NavLink to={ROUTES.CONTACTS} >
-                Contacts
-                </NavLink>
-                <NavLink to={ROUTES.APPOINTMENTS} >
-                Appointments
-                </NavLink>
-            </nav>
-            <Outlet/>
-      </>
-    );
+  return (
+    <>
+      <nav>
+        <NavLink to={ROUTES.CONTACTS} >
+        Contacts
+        </NavLink>
+        <NavLink to={ROUTES.APPOINTMENTS} >
+        Appointments
+        </NavLink>
+      </nav>
+      <Outlet/>
+    </>
+  );
 
 }
 
