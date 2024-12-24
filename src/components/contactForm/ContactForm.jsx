@@ -21,7 +21,7 @@ export const ContactForm = ({
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <label>Name</label>
+        <label htmlFor="name">Name</label>
         <input 
           id="name" 
           name="name" 
@@ -32,7 +32,7 @@ export const ContactForm = ({
           required 
         />
 
-        <label>Phone Number</label>
+        <label htmlFor="phone">Phone Number</label>
         <input 
           id="phone" 
           name="phone" 
@@ -44,7 +44,7 @@ export const ContactForm = ({
           required 
         />
 
-        <label>E-mail</label>
+        <label htmlFor="email">E-mail</label>
         <input 
           id="email" 
           name="email" 

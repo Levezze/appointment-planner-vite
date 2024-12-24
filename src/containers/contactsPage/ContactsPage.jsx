@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 
 import { ContactForm } from "../../components/contactForm/ContactForm";
 import { TileList } from "../../components/tileList/TileList";
@@ -15,35 +15,41 @@ export const ContactsPage = ({ contacts, addContact }) => {
     setDuplicate(sameName);
   }, [name, contacts]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!duplicate) {
-      addContact(name, phone, email);
-      setName("");
-      setPhone("");
-      setEmail("");
-    } else {
-      alert("Name already exists!")
-    }
-  };
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (!duplicate) {
+        addContact(name, phone, email);
+        setName("");
+        setPhone("");
+        setEmail("");
+      } else {
+        alert("Name already exists!")
+      }
+    }, [name, phone, email, duplicate, addContact]
+  );
 
+  const memoizedSetName = useCallback(value => setName(value), []);
+  const memoizedSetPhone = useCallback(value => setPhone(value), []);
+  const memoizedSetEmail = useCallback(value => setEmail(value), []);
+  
   return (
     <div>
       <section>
         <h2>Add Contact</h2>
         <ContactForm
         name={name} 
-        setName={setName}
+        setName={memoizedSetName}
         phone={phone}
-        setPhone={setPhone}
+        setPhone={memoizedSetPhone}
         email={email}
-        setEmail={setEmail}
+        setEmail={memoizedSetEmail}
         handleSubmit={handleSubmit} />
       </section>
       <hr />
       <section>
         <h2>Contacts</h2>
-        <TileList contacts={contacts} />
+        <TileList array={contacts} />
       </section>
     </div>
   );

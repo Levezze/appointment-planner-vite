@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 export const Tile = ({ name, description }) => {
-  console.log(description);
+  // console.log(description);
 
   function descriptionRender() {
     const keys = Object.keys(description);
+    let count = 0;
     return keys.map(key => {
-    return <p className="tile">{key} - {description[key]}</p>
-    });
+      count++;
+      return <p className="tile" key={count}>{key} - {description[key]}</p>
+      });
   };
 
   return (
